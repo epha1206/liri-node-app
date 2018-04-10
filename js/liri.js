@@ -4,6 +4,7 @@ var request = require("request");
 var keys = require("./keys");
 var Spotify = require('node-spotify-api');
 var Twitter = require('twitter');
+var fs = require('fs');
 
 var twitterClient = new Twitter(keys.twitter);
 var spotifyClient = new Spotify(keys.spotify);
@@ -45,5 +46,14 @@ if(liriCommand === "movie-this") {
       console.log('error:', error); // Print the error if one occurred
       console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
       console.log('body:', body); // Print the HTML for the Google homepage.
+    });
+}
+
+if(liriCommand === "do-what-it-says") {
+    var file = process.argv[2];
+
+    fs.readFile('random.txt', function (err, data) {
+
+    console.log(file);
     });
 }
